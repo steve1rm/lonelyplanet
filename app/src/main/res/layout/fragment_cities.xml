@@ -1,13 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="me.androidbox.travelmate.CitiesFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.androidbox.travelmate.CitiesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/ivImageSlide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Cities"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/lpage2" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="Download the world\'s top\ncities, curated by our experts"
+        android:textSize="24dp"
+        android:textColor="@android:color/white"
+        android:fontFamily="sans-serif-light"/>
+
+</RelativeLayout>

@@ -5,8 +5,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_above="@id/tvLogin"
+        android:layout_height="1dp"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginEnd="12dp"
@@ -28,10 +27,11 @@
         android:layout_toLeftOf="@id/placeHolder"
         android:layout_toStartOf="@id/placeHolder"
         android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center_horizontal"
         android:text="LOGIN"
-        android:textColor="@color/textLanding"
-        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
         android:fontFamily="sans-serif-medium"/>
 
     <TextView
@@ -43,11 +43,10 @@
         android:layout_toRightOf="@id/placeHolder"
         android:layout_toEndOf="@id/placeHolder"
         android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center_horizontal"
         android:text="SIGN UP"
         android:textColor="@color/textLanding"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:fontFamily="sans-serif-medium"/>
-
-
 </RelativeLayout>

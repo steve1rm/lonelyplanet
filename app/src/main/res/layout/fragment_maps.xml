@@ -1,18 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="me.androidbox.travelmate.MapsFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.androidbox.travelmate.MapsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/ivImageSlide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="maps"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/lpage4" />
 
-    <ProgressBar
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyleHorizontal"/>
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="Save your favourite places for\neasy access later"
+        android:textSize="24dp"
+        android:textColor="@android:color/white"
+        android:fontFamily="sans-serif-light"/>
 
-</FrameLayout>
+</RelativeLayout>

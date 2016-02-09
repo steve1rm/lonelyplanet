@@ -6,4 +6,7 @@
 
     <color name="line">#88ffffff</color>
     <color name="textLanding">#99ffffff</color>
+
+    <!-- 500 Blue -->
+    <color name="button">#992196f3</color>
 </resources>

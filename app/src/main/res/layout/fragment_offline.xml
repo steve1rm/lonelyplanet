@@ -1,13 +1,35 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="me.androidbox.travelmate.OfflineFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.androidbox.travelmate.OfflineFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/ivImageSlide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="offline"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/lpage3" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="Take it all with you anywhere,\neven offline"
+        android:textSize="24dp"
+        android:textColor="@android:color/white"
+        android:fontFamily="sans-serif-light"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="110dp"
+        android:layout_centerInParent="true"
+        android:text="Explore cities"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/button"
+        android:fontFamily="sans-serif-medium"/>
+</RelativeLayout>
