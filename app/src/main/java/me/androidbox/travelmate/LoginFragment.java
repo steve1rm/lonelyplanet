@@ -3,6 +3,8 @@ package me.androidbox.travelmate;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +35,6 @@ public class LoginFragment extends Fragment {
         mIvCircle = (ImageView)view.findViewById(R.id.circle1);
         mIvCircle.clearAnimation();
 
-
         return view;
     }
 
@@ -52,4 +53,8 @@ public class LoginFragment extends Fragment {
 
         mIvCircle.clearAnimation();
     }
+
+
+
+
 }

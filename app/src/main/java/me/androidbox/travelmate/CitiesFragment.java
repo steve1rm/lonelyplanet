@@ -1,6 +1,5 @@
 package me.androidbox.travelmate;
 
-
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,8 +24,9 @@ public class CitiesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView");
+
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_cities, container, false);
         mIvCircle1 = (ImageView)view.findViewById(R.id.circle1);
