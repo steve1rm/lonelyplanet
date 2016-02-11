@@ -13,7 +13,7 @@ import android.widget.ImageView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CitiesFragment extends Fragment {
+public class CitiesFragment extends Fragment implements PerformAnimationListener {
     private static final String TAG = CitiesFragment.class.getSimpleName();
 
     private ImageView mIvCircle1;
@@ -32,23 +32,38 @@ public class CitiesFragment extends Fragment {
         mIvCircle1 = (ImageView)view.findViewById(R.id.circle1);
         mIvCircle2 = (ImageView)view.findViewById(R.id.circle2);
 
+   //     mIvCircle1.setImageDrawable(getResources().getDrawable(R.drawable.circle_disabled, null));
         return view;
+    }
+
+    @Override
+    public void onPerformAnimation() {
+        Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
+        mIvCircle2.startAnimation(scaleAnim);
+
+        scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
+        mIvCircle1.startAnimation(scaleAnim);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
+/*
         final Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
         mIvCircle2.startAnimation(scaleAnim);
+*/
     }
 
     @Override
     public void onPause() {
         super.onPause();
         Log.d(TAG, "onPause");
+/*
         final Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
         mIvCircle1.startAnimation(scaleAnim);
+*/
     }
 
 }
