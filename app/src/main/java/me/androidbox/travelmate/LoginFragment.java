@@ -26,7 +26,6 @@ public class LoginFragment extends Fragment implements PerformAnimationListener 
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
@@ -36,37 +35,29 @@ public class LoginFragment extends Fragment implements PerformAnimationListener 
         mIvCircle1 = (ImageView)view.findViewById(R.id.circle1);
         mIvCircle2 = (ImageView)view.findViewById(R.id.circle2);
 
+        mIvCircle1.clearAnimation();
+        mIvCircle2.clearAnimation();
+
         return view;
     }
 
     @Override
-    public void onPerformAnimation() {
+    public void onPerformAnimation(boolean moveRight) {
         Log.d(TAG, "onPerformAnimation");
-        Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
-        mIvCircle1.startAnimation(scaleAnim);
 
-        scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
-        mIvCircle2.startAnimation(scaleAnim);
+        if(moveRight) {
+            Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
+            mIvCircle2.startAnimation(scaleAnim);
 
+            scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
+            mIvCircle1.startAnimation(scaleAnim);
+        }
+        else {
+            Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
+            mIvCircle1.startAnimation(scaleAnim);
+
+            scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
+            mIvCircle2.startAnimation(scaleAnim);
+        }
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume");
- //       final Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
- //       mIvCircle.startAnimation(scaleAnim);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause");
-
- //       mIvCircle.clearAnimation();
-    }
-
-
-
-
 }

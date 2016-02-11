@@ -10,7 +10,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -26,21 +25,33 @@ public class OfflineFragment extends Fragment implements PerformAnimationListene
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_maps, container, false);
+        final View view = inflater.inflate(R.layout.fragment_offline, container, false);
 
         mIvCircle4 = (ImageView)view.findViewById(R.id.circle4);
         mIvCircle5 = (ImageView)view.findViewById(R.id.circle5);
+
+        mIvCircle4.clearAnimation();
+        mIvCircle5.clearAnimation();
 
         return view;
     }
 
     @Override
-    public void onPerformAnimation() {
-        Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
-        mIvCircle5.startAnimation(scaleAnim);
+    public void onPerformAnimation(boolean moveRight) {
+        if(moveRight) {
+            Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
+            mIvCircle5.startAnimation(scaleAnim);
 
-        scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
-        mIvCircle4.startAnimation(scaleAnim);
+            scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
+            mIvCircle4.startAnimation(scaleAnim);
+        }
+        else {
+            Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
+            mIvCircle4.startAnimation(scaleAnim);
+
+            scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
+            mIvCircle5.startAnimation(scaleAnim);
+        }
 
     }
 }

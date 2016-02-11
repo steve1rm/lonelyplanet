@@ -10,13 +10,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FavouriteFragment extends Fragment implements PerformAnimationListener {
     private ImageView mIvCircle2;
     private ImageView mIvCircle3;
+    private ImageView mIvCircle4;
 
     public FavouriteFragment() {
         // Required empty public constructor
@@ -31,17 +31,31 @@ public class FavouriteFragment extends Fragment implements PerformAnimationListe
 
         mIvCircle2 = (ImageView)view.findViewById(R.id.circle2);
         mIvCircle3 = (ImageView)view.findViewById(R.id.circle3);
+        mIvCircle4 = (ImageView)view.findViewById(R.id.circle4);
+
+        mIvCircle3.clearAnimation();
+        mIvCircle2.clearAnimation();
+        mIvCircle4.clearAnimation();
 
         return view;
     }
 
     @Override
-    public void onPerformAnimation() {
-        Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
-        mIvCircle3.startAnimation(scaleAnim);
+    public void onPerformAnimation(boolean moveRight) {
 
-        scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
-        mIvCircle2.startAnimation(scaleAnim);
+        if(moveRight) {
+            Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
+            mIvCircle3.startAnimation(scaleAnim);
 
+            scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
+            mIvCircle2.startAnimation(scaleAnim);
+        }
+        else {
+            Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
+            mIvCircle3.startAnimation(scaleAnim);
+
+            scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
+            mIvCircle4.startAnimation(scaleAnim);
+        }
     }
 }

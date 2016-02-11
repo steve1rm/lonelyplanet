@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private PerformAnimationListener mPerformAnimationListener2;
     private PerformAnimationListener mPerformAnimationListener3;
     private PerformAnimationListener mPerformAnimationListener4;
+    private int mPreviousPosition;
 
     private List<PerformAnimationListener> mPerformAnimationListenersList;
 
@@ -91,28 +92,39 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
+
+                boolean moveRight = false;
+                /* if the position is greater than mPreviousPosition we are moving right */
+                if(position > mPreviousPosition) {
+                    moveRight = true;
+                    Log.d(TAG, "MoveRight");
+                }
+
                 Log.d(TAG, "onPageSelected position " + position);
                 switch(position) {
                     case 0:
-                        mPerformAnimationListener0.onPerformAnimation();
+                        mPerformAnimationListener0.onPerformAnimation(moveRight);
                         break;
 
                     case 1:
-                        mPerformAnimationListener1.onPerformAnimation();
+                        mPerformAnimationListener1.onPerformAnimation(moveRight);
                         break;
 
                     case 2:
-                        mPerformAnimationListener2.onPerformAnimation();
+                        mPerformAnimationListener2.onPerformAnimation(moveRight);
                         break;
 
                     case 3:
-                        mPerformAnimationListener3.onPerformAnimation();
+                        mPerformAnimationListener3.onPerformAnimation(moveRight);
                         break;
 
                     case 4:
-                        mPerformAnimationListener4.onPerformAnimation();
+                        mPerformAnimationListener4.onPerformAnimation(moveRight);
                         break;
                 }
+
+                /* Update mPreviousPosition */
+                mPreviousPosition = position;
             }
 
             @Override

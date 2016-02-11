@@ -17,6 +17,7 @@ import android.widget.ImageView;
 public class MapsFragment extends Fragment implements PerformAnimationListener {
     private ImageView mIvCircle3;
     private ImageView mIvCircle4;
+    private ImageView mIvCircle5;
 
     public MapsFragment() {
         // Required empty public constructor
@@ -29,16 +30,30 @@ public class MapsFragment extends Fragment implements PerformAnimationListener {
 
         mIvCircle3 = (ImageView)view.findViewById(R.id.circle3);
         mIvCircle4 = (ImageView)view.findViewById(R.id.circle4);
+        mIvCircle5 = (ImageView)view.findViewById(R.id.circle5);
+
+        mIvCircle3.clearAnimation();
+        mIvCircle4.clearAnimation();
+        mIvCircle5.clearAnimation();
 
         return view;
     }
 
     @Override
-    public void onPerformAnimation() {
-        Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
-        mIvCircle4.startAnimation(scaleAnim);
+    public void onPerformAnimation(boolean moveRight) {
+        if(moveRight) {
+            Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
+            mIvCircle4.startAnimation(scaleAnim);
 
-        scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
-        mIvCircle3.startAnimation(scaleAnim);
+            scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
+            mIvCircle3.startAnimation(scaleAnim);
+        }
+        else {
+            Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
+            mIvCircle4.startAnimation(scaleAnim);
+
+            scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
+            mIvCircle5.startAnimation(scaleAnim);
+        }
     }
 }
