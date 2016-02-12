@@ -33,10 +33,10 @@
 
         <ImageView
             android:id="@+id/circle1"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/circle_enabled"/>
+            android:src="@drawable/circle_disabled"/>
 
         <Space
             android:layout_width="10dp"
@@ -44,10 +44,10 @@
 
         <ImageView
             android:id="@+id/circle2"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/circle_enabled"/>
+            android:src="@drawable/circle_disabled"/>
 
         <Space
             android:layout_width="10dp"
@@ -55,10 +55,10 @@
 
         <ImageView
             android:id="@+id/circle3"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/circle_enabled"/>
+            android:src="@drawable/circle_disabled"/>
 
         <Space
             android:layout_width="10dp"
@@ -66,10 +66,10 @@
 
         <ImageView
             android:id="@+id/circle4"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/circle_enabled"/>
+            android:src="@drawable/circle_disabled"/>
 
         <Space
             android:layout_width="10dp"
@@ -77,21 +77,11 @@
 
         <ImageView
             android:id="@+id/circle5"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/circle_enabled"/>
     </LinearLayout>
-
-
-<!--
-    <include
-        layout="@layout/circle_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/title"/>
--->
 
     <Button
         android:layout_width="300dp"

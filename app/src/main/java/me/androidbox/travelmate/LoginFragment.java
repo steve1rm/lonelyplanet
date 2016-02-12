@@ -60,4 +60,11 @@ public class LoginFragment extends Fragment implements PerformAnimationListener 
             mIvCircle2.startAnimation(scaleAnim);
         }
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mIvCircle1.clearAnimation();
+        mIvCircle2.clearAnimation();
+    }
 }

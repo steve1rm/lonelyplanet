@@ -56,4 +56,13 @@ public class MapsFragment extends Fragment implements PerformAnimationListener {
             mIvCircle5.startAnimation(scaleAnim);
         }
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mIvCircle3.clearAnimation();
+        mIvCircle5.clearAnimation();
+        mIvCircle4.clearAnimation();
+    }
+
 }

@@ -58,4 +58,13 @@ public class FavouriteFragment extends Fragment implements PerformAnimationListe
             mIvCircle4.startAnimation(scaleAnim);
         }
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mIvCircle3.clearAnimation();
+        mIvCircle2.clearAnimation();
+        mIvCircle4.clearAnimation();
+    }
+
 }

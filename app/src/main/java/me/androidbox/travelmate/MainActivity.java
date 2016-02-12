@@ -43,17 +43,6 @@ public class MainActivity extends AppCompatActivity {
         mFragmentList.add(new MapsFragment());
         mFragmentList.add(new OfflineFragment());
 
-/*
-        mPerformAnimationListenersList = new ArrayList<>();
-        mPerformAnimationListenersList.add(mPerformAnimationListener0);
-        mPerformAnimationListenersList.add(mPerformAnimationListener1);
-        mPerformAnimationListenersList.add(mPerformAnimationListener2);
-        mPerformAnimationListenersList.add(mPerformAnimationListener3);
-        mPerformAnimationListenersList.add(mPerformAnimationListener4);
-
-        mPerformAnimationListenersList.get(0) = (PerformAnimationListener)mFragmentList.get(0);
-*/
-
         mPerformAnimationListener0 = (PerformAnimationListener)mFragmentList.get(0);
         mPerformAnimationListener1 = (PerformAnimationListener)mFragmentList.get(1);
         mPerformAnimationListener2 = (PerformAnimationListener)mFragmentList.get(2);
@@ -61,28 +50,9 @@ public class MainActivity extends AppCompatActivity {
         mPerformAnimationListener4 = (PerformAnimationListener)mFragmentList.get(4);
 
 
-     //   for(Fragment fragment : mFragmentList) {
-     //       mPerformAnimationListener = (PerformAnimationListener)fragment;
-     //   }
-
-      /*  int i = 0;
-        for(PerformAnimationListener performAnimationListener : mPerformAnimationListenersList) {
-            performAnimationListener = (PerformAnimationListener)mFragmentList.get(i);
-            i++;
-        }*/
-
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         mPageAdapter = new ScreenSlidePageAdapter(getFragmentManager());
         mViewPager.setAdapter(mPageAdapter);
-
-/*
-        mViewPager.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                Log.d(TAG, "onScrollChange");
-            }
-        });
-*/
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

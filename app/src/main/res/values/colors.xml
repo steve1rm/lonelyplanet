@@ -9,4 +9,11 @@
 
     <!-- 500 Blue -->
     <color name="button">#992196f3</color>
+
+    <!-- circle inactive color -->
+    <color name="circleDisabled">#88ffffff</color>
+
+    <!-- circle active color -->
+    <color name="circleEnabled">#ffffff</color>
+
 </resources>

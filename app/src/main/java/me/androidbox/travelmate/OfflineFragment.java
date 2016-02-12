@@ -22,7 +22,6 @@ public class OfflineFragment extends Fragment implements PerformAnimationListene
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_offline, container, false);
@@ -52,6 +51,12 @@ public class OfflineFragment extends Fragment implements PerformAnimationListene
             scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
             mIvCircle5.startAnimation(scaleAnim);
         }
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mIvCircle5.clearAnimation();
+        mIvCircle4.clearAnimation();
     }
 }

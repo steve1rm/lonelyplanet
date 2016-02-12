@@ -43,7 +43,9 @@ public class CitiesFragment extends Fragment implements PerformAnimationListener
 
     @Override
     public void onPerformAnimation(boolean moveRight) {
+
         if(moveRight) {
+            Log.d(TAG, "onPerformAnimation moveRight");
             Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
             mIvCircle2.startAnimation(scaleAnim);
 
@@ -51,13 +53,22 @@ public class CitiesFragment extends Fragment implements PerformAnimationListener
             mIvCircle1.startAnimation(scaleAnim);
         }
         else {
+            Log.d(TAG, "onPerformAnimation moveLeft");
             Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
             mIvCircle2.startAnimation(scaleAnim);
 
             scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
             mIvCircle3.startAnimation(scaleAnim);
         }
-
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+
+        mIvCircle1.clearAnimation();
+        mIvCircle2.clearAnimation();
+        mIvCircle3.clearAnimation();
+    }
 }
