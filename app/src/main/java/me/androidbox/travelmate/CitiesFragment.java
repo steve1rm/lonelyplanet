@@ -30,13 +30,13 @@ public class CitiesFragment extends Fragment implements PerformAnimationListener
 
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_cities, container, false);
-        mIvCircle1 = (ImageView)view.findViewById(R.id.circle1);
+ /*       mIvCircle1 = (ImageView)view.findViewById(R.id.circle1);
         mIvCircle2 = (ImageView)view.findViewById(R.id.circle2);
         mIvCircle3 = (ImageView)view.findViewById(R.id.circle3);
 
         mIvCircle3.clearAnimation();
         mIvCircle2.clearAnimation();
-        mIvCircle1.clearAnimation();
+        mIvCircle1.clearAnimation();*/
 
         return view;
     }
@@ -44,7 +44,7 @@ public class CitiesFragment extends Fragment implements PerformAnimationListener
     @Override
     public void onPerformAnimation(boolean moveRight) {
 
-        if(moveRight) {
+ /*       if(moveRight) {
             Log.d(TAG, "onPerformAnimation moveRight");
             Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaleup_circle);
             mIvCircle2.startAnimation(scaleAnim);
@@ -60,15 +60,17 @@ public class CitiesFragment extends Fragment implements PerformAnimationListener
             scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
             mIvCircle3.startAnimation(scaleAnim);
         }
-    }
+ */   }
 
     @Override
     public void onPause() {
         super.onPause();
         Log.d(TAG, "onPause");
 
+/*
         mIvCircle1.clearAnimation();
         mIvCircle2.clearAnimation();
         mIvCircle3.clearAnimation();
+*/
     }
 }

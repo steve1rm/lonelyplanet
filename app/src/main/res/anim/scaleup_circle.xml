@@ -6,16 +6,16 @@
      android:interpolator="@android:anim/decelerate_interpolator">
 
     <scale
-        android:fromXScale="0.2"
-        android:fromYScale="0.2"
+        android:fromXScale="1.0"
+        android:fromYScale="1.0"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:toXScale="1.0"
-        android:toYScale="1.0">
+        android:toXScale="1.5"
+        android:toYScale="1.5">
     </scale>
 
     <alpha
-        android:fromAlpha="0.8"
+        android:fromAlpha="0.4"
         android:toAlpha="1.0">
     </alpha>
 </set>

@@ -23,6 +23,7 @@
         android:fontFamily="sans-serif-light"/>
 
 
+<!--
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="60dp"
@@ -82,6 +83,7 @@
             android:layout_gravity="center"
             android:src="@drawable/circle_enabled"/>
     </LinearLayout>
+-->
 
     <Button
         android:layout_width="300dp"

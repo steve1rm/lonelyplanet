@@ -32,12 +32,12 @@ public class LoginFragment extends Fragment implements PerformAnimationListener 
 
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_login, container, false);
-        mIvCircle1 = (ImageView)view.findViewById(R.id.circle1);
+ /*       mIvCircle1 = (ImageView)view.findViewById(R.id.circle1);
         mIvCircle2 = (ImageView)view.findViewById(R.id.circle2);
 
         mIvCircle1.clearAnimation();
         mIvCircle2.clearAnimation();
-
+*/
         return view;
     }
 
@@ -45,6 +45,7 @@ public class LoginFragment extends Fragment implements PerformAnimationListener 
     public void onPerformAnimation(boolean moveRight) {
         Log.d(TAG, "onPerformAnimation");
 
+/*
         if(moveRight) {
             Animation scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
             mIvCircle2.startAnimation(scaleAnim);
@@ -59,12 +60,15 @@ public class LoginFragment extends Fragment implements PerformAnimationListener 
             scaleAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_circle);
             mIvCircle2.startAnimation(scaleAnim);
         }
+*/
     }
 
     @Override
     public void onPause() {
         super.onPause();
+/*
         mIvCircle1.clearAnimation();
         mIvCircle2.clearAnimation();
+*/
     }
 }
