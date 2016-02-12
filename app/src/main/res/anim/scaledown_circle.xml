@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android">
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+     android:fillAfter="true"
+     android:fillEnabled="true"
+     android:interpolator="@android:anim/accelerate_interpolator">
+
     <scale
         android:duration="500"
-        android:fillAfter="true"
-        android:fillEnabled="true"
         android:fromXScale="1.0"
         android:fromYScale="1.0"
-        android:interpolator="@android:anim/accelerate_interpolator"
         android:pivotX="50%"
         android:pivotY="50%"
         android:toXScale="1.0"
@@ -14,9 +15,7 @@
     </scale>
 
     <alpha
-        android:fillAfter="true"
         android:duration="500"
-        android:fromAlpha="0.0"
-        android:interpolator="@android:anim/accelerate_interpolator"
-        android:toAlpha="1.0" />
+        android:fromAlpha="1.0"
+        android:toAlpha="0.4"/>
 </set>
