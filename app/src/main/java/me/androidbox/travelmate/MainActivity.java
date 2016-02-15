@@ -31,16 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mIvCircle3;
     private ImageView mIvCircle4;
 
-
-    /*    private PerformAnimationListener mPerformAnimationListener0;
-    private PerformAnimationListener mPerformAnimationListener1;
-    private PerformAnimationListener mPerformAnimationListener2;
-    private PerformAnimationListener mPerformAnimationListener3;
-    private PerformAnimationListener mPerformAnimationListener4;
- */
     private int mPreviousPosition;
-
-    //  private List<PerformAnimationListener> mPerformAnimationListenersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +46,6 @@ public class MainActivity extends AppCompatActivity {
         mFragmentList.add(new FavouriteFragment());
         mFragmentList.add(new MapsFragment());
         mFragmentList.add(new OfflineFragment());
-
- /*       mPerformAnimationListener0 = (PerformAnimationListener)mFragmentList.get(0);
-        mPerformAnimationListener1 = (PerformAnimationListener)mFragmentList.get(1);
-        mPerformAnimationListener2 = (PerformAnimationListener)mFragmentList.get(2);
-        mPerformAnimationListener3 = (PerformAnimationListener)mFragmentList.get(3);
-        mPerformAnimationListener4 = (PerformAnimationListener)mFragmentList.get(4);
-*/
 
         mIvCircle0 = (ImageView) findViewById(R.id.circle0);
         mIvCircle1 = (ImageView) findViewById(R.id.circle1);
@@ -94,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // Log.d(TAG, "onPageScrolled position " + position);
+                Log.d(TAG, "onPageScrolled position " + position);
             }
 
             @Override
@@ -103,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 /* if the position is greater than mPreviousPosition we are moving right */
                 if (position > mPreviousPosition) {
                     moveRight = true;
-
                 }
 
                 Log.d(TAG, "onPageSelected position " + position);
@@ -198,14 +181,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else {
                             Log.d(TAG, "moveLeft");
-/*
-                            Log.d(TAG, "onPerformAnimation moveLeft");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
-                            mIvCircle1.startAnimation(scaleAnim);
-
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-                            mIvCircle2.startAnimation(scaleAnim);
-*/
                         }
                         break;
                 }
@@ -216,9 +191,15 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                // Log.d(TAG, "onPageScrollStateChanged state " + state);
+                Log.d(TAG, "onPageScrollStateChanged state " + state);
+                if(state == ViewPager.SCROLL_STATE_SETTLING) {
+                    /* if position is 4 aminate the button */
+                    Log.d(TAG, "SCROLL_STATE_SETTING");
+                }
             }
         });
+
+
     }
 
     public class ScreenSlidePageAdapter extends FragmentPagerAdapter {
