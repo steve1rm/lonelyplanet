@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -18,12 +17,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    public interface AnimateButtonListener {
+        void onAnimateListener();
+    }
+    private AnimateButtonListener mAnimateButtonListner;
+
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private static final int NUM_PAGES = 5;
     private ViewPager mViewPager;
     private PagerAdapter mPageAdapter;
     private List<Fragment> mFragmentList = Collections.emptyList();
+    private int mCurrentPage;
 
     private ImageView mIvCircle0;
     private ImageView mIvCircle1;
@@ -47,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         mFragmentList.add(new MapsFragment());
         mFragmentList.add(new OfflineFragment());
 
+        /* Initialize listener for the offlineFragment */
+        mAnimateButtonListner = (AnimateButtonListener)mFragmentList.get(4);
+
         mIvCircle0 = (ImageView) findViewById(R.id.circle0);
         mIvCircle1 = (ImageView) findViewById(R.id.circle1);
         mIvCircle2 = (ImageView) findViewById(R.id.circle2);
@@ -58,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         mIvCircle2.clearAnimation();
         mIvCircle3.clearAnimation();
         mIvCircle4.clearAnimation();
-
 
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
         mPageAdapter = new ScreenSlidePageAdapter(getFragmentManager());
@@ -78,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.d(TAG, "onPageScrolled position " + position);
+         //       Log.d(TAG, "onPageScrolled position " + position);
             }
 
             @Override
@@ -88,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 if (position > mPreviousPosition) {
                     moveRight = true;
                 }
+
+                /* Update the current page so we know when we are on page 4 to animate the button */
+                mCurrentPage = position;
 
                 Log.d(TAG, "onPageSelected position " + position);
                 switch(position) {
@@ -178,6 +188,8 @@ public class MainActivity extends AppCompatActivity {
 
                             scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
                             mIvCircle4.startAnimation(scaleAnim);
+
+                            mAnimateButtonListner.onAnimateListener();
                         }
                         else {
                             Log.d(TAG, "moveLeft");
@@ -191,15 +203,19 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                Log.d(TAG, "onPageScrollStateChanged state " + state);
                 if(state == ViewPager.SCROLL_STATE_SETTLING) {
                     /* if position is 4 aminate the button */
-                    Log.d(TAG, "SCROLL_STATE_SETTING");
+                    Log.d(TAG, "SCROLL_STATE_SETTING mCurrentPage: " + mCurrentPage);
+
+/*
+                    if(mCurrentPage == 4) {
+                        Log.d(TAG, "onPageScrollStateChanged: " + mCurrentPage);
+                        mAnimateButtonListner.onAnimateListener();
+                    }
+*/
                 }
             }
         });
-
-
     }
 
     public class ScreenSlidePageAdapter extends FragmentPagerAdapter {
