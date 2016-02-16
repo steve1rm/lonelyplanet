@@ -8,8 +8,10 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mIvCircle2;
     private ImageView mIvCircle3;
     private ImageView mIvCircle4;
+    private Button mBtnExploreCities;
 
     private int mPreviousPosition;
 
@@ -81,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
         mIvCircle3.startAnimation(scaleAnim);
         scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
         mIvCircle4.startAnimation(scaleAnim);
+
+        mBtnExploreCities = (Button)findViewById(R.id.btnExploreCities);
+        mBtnExploreCities.setVisibility(View.INVISIBLE);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -177,6 +183,11 @@ public class MainActivity extends AppCompatActivity {
 
                             scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
                             mIvCircle4.startAnimation(scaleAnim);
+
+                            final Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_disappear);
+                            mBtnExploreCities.startAnimation(animation);
+
+       //                     mBtnExploreCities.setVisibility(View.INVISIBLE);
                         }
                         break;
 
@@ -189,7 +200,10 @@ public class MainActivity extends AppCompatActivity {
                             scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
                             mIvCircle4.startAnimation(scaleAnim);
 
-                            mAnimateButtonListner.onAnimateListener();
+                            mBtnExploreCities.setVisibility(View.VISIBLE);
+
+                            final Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_appear);
+                            mBtnExploreCities.startAnimation(animation);
                         }
                         else {
                             Log.d(TAG, "moveLeft");
