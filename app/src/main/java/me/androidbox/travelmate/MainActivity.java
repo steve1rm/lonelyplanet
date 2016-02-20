@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         mFragmentList = new ArrayList<>();
         mFragmentList.add(new LoginFragment());
         mFragmentList.add(new CitiesFragment());
-        mFragmentList.add(new FavouriteFragment());
         mFragmentList.add(new MapsFragment());
+        mFragmentList.add(new FavouriteFragment());
         mFragmentList.add(new OfflineFragment());
 
         mIvCircle0 = (ImageView)findViewById(R.id.circle0);

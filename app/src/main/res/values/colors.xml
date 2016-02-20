@@ -17,5 +17,4 @@
 
     <!-- white with transparent circle active color -->
     <color name="circleEnabled">#ffffff</color>
-
 </resources>
