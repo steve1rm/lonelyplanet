@@ -5,6 +5,8 @@
      android:fillEnabled="true"
      android:interpolator="@android:anim/decelerate_interpolator">
 
+    <!-- from scale we want to start from the original size 1.0 -->
+    <!-- to scale we want to increase by 0.5 to 1.5 of its original size -->
     <scale
         android:fromXScale="1.0"
         android:fromYScale="1.0"
@@ -14,6 +16,8 @@
         android:toYScale="1.5">
     </scale>
 
+    <!-- from start with 0.4 transparency -->
+    <!-- to full color -->
     <alpha
         android:fromAlpha="0.4"
         android:toAlpha="1.0">

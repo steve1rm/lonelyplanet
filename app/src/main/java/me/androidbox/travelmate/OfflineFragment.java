@@ -1,6 +1,5 @@
 package me.androidbox.travelmate;
 
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
  * A simple {@link Fragment} subclass.
  */
 public class OfflineFragment extends Fragment {
-
     public OfflineFragment() {
         // Required empty public constructor
     }

@@ -22,5 +22,4 @@
         android:text="Access maps, curated\ncollections and essential tips"
         android:textColor="@android:color/white"
         android:textSize="24sp"/>
-
 </RelativeLayout>

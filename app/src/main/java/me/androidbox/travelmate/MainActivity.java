@@ -61,10 +61,14 @@ public class MainActivity extends AppCompatActivity {
         mIvCircle3.clearAnimation();
         mIvCircle4.clearAnimation();
 
+        /* Get the viewpager where are fragment will be displayed */
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        /* Create a new ScreenSlidePageAdapter */
         PagerAdapter pagerAdapter = new ScreenSlidePageAdapter(getFragmentManager());
+        /* Set the adapter to the viewpager */
         viewPager.setAdapter(pagerAdapter);
 
+        /* Start the animations in there default starting position on first load */
         Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
         mIvCircle0.startAnimation(scaleAnim);
         scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnExploreCities = (Button)findViewById(R.id.btnExploreCities);
         mBtnExploreCities.setVisibility(View.INVISIBLE);
 
+        /* Listen for the swiping events */
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -88,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 boolean moveRight = false;
-                /* if the position is greater than mPreviousPosition we are moving right */
+                /* if the position is greater than mPreviousPosition we are moving right else we are moving left */
                 if (position > mPreviousPosition) {
                     moveRight = true;
                 }
@@ -122,8 +127,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else {
                             Log.d(TAG, "moveLeft");
-
-                            Log.d(TAG, "onPerformAnimation moveLeft");
                             Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
                             mIvCircle1.startAnimation(scaleAnim);
 
@@ -143,8 +146,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else {
                             Log.d(TAG, "moveLeft");
-
-                            Log.d(TAG, "onPerformAnimation moveLeft");
                             Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
                             mIvCircle2.startAnimation(scaleAnim);
 
@@ -164,14 +165,13 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else {
                             Log.d(TAG, "moveLeft");
-
-                            Log.d(TAG, "onPerformAnimation moveLeft");
                             Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
                             mIvCircle3.startAnimation(scaleAnim);
 
                             scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
                             mIvCircle4.startAnimation(scaleAnim);
 
+                            /* Make the button slowly disappear */
                             final Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_disappear);
                             mBtnExploreCities.startAnimation(animation);
                         }
@@ -223,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
+            /* We need to return the number of pages - or nothing will show */
             return NUM_PAGES;
         }
     }

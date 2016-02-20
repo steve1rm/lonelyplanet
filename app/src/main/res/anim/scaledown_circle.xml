@@ -5,6 +5,8 @@
      android:fillEnabled="true"
      android:interpolator="@android:anim/accelerate_interpolator">
 
+    <!-- from This the opposite from the scale down we start at 1.5 and go back to the original 1.0 -->
+    <!-- to scale back to the original size 1.0 -->
     <scale
         android:fromXScale="1.5"
         android:fromYScale="1.5"
@@ -14,6 +16,7 @@
         android:toYScale="1.0">
     </scale>
 
+    <!-- The opposite of scaleup_cirlce just going back to the original -->
     <alpha
         android:fromAlpha="1.0"
         android:toAlpha="0.4"/>
