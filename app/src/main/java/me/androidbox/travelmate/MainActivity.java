@@ -8,7 +8,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -22,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private static final int NUM_PAGES = 5;
-    private List<Fragment> mFragmentList = Collections.emptyList();
 
     private ImageView mIvCircle0;
     private ImageView mIvCircle1;
@@ -31,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mIvCircle4;
     private Button mBtnExploreCities;
 
+    /* Animation object */
+    private Animation mDisappearBtnAnim;
+    private Animation mScaleCircleAnim;
+    
+    /* Keeps track of the page position when swiping right and left */
     private int mPreviousPosition;
 
     @Override
@@ -40,14 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.screen_slide);
 
-        /* Create an arrayList of fragments that will be used for the viewpager to navigate through */
-        mFragmentList = new ArrayList<>();
-        mFragmentList.add(new LoginFragment());
-        mFragmentList.add(new CitiesFragment());
-        mFragmentList.add(new MapsFragment());
-        mFragmentList.add(new FavouriteFragment());
-        mFragmentList.add(new OfflineFragment());
-
+        /* Inflate the view into java objects */
         mIvCircle0 = (ImageView)findViewById(R.id.circle0);
         mIvCircle1 = (ImageView)findViewById(R.id.circle1);
         mIvCircle2 = (ImageView)findViewById(R.id.circle2);
@@ -68,20 +64,23 @@ public class MainActivity extends AppCompatActivity {
         /* Set the adapter to the viewpager */
         viewPager.setAdapter(pagerAdapter);
 
-        /* Start the animations in there default starting position on first load */
-        Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
-        mIvCircle0.startAnimation(scaleAnim);
-        scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-        mIvCircle1.startAnimation(scaleAnim);
-        scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-        mIvCircle2.startAnimation(scaleAnim);
-        scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-        mIvCircle3.startAnimation(scaleAnim);
-        scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-        mIvCircle4.startAnimation(scaleAnim);
+        /* Start the animations in there default starting position on first load - the first circle is scaled up */
+        mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+        mIvCircle0.startAnimation(mScaleCircleAnim);
+        /* All other circles are scaled down */
+        mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+        mIvCircle1.startAnimation(mScaleCircleAnim);
+        mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+        mIvCircle2.startAnimation(mScaleCircleAnim);
+        mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+        mIvCircle3.startAnimation(mScaleCircleAnim);
+        mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+        mIvCircle4.startAnimation(mScaleCircleAnim);
 
+        /* Button that is displayed on the final page */
         mBtnExploreCities = (Button)findViewById(R.id.btnExploreCities);
-        mBtnExploreCities.setVisibility(View.INVISIBLE);
+        mDisappearBtnAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_disappear);
+        mBtnExploreCities.startAnimation(mDisappearBtnAnim);
 
         /* Listen for the swiping events */
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -90,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
                 /* Ignore */
             }
 
+            /*
+               We need to establish if we are moving to the right or the left so we can scale down and up on the
+               correct circles. We do this by keeping track of the position to see if it greater or less then the
+               previous position
+             */
             @Override
             public void onPageSelected(int position) {
                 boolean moveRight = false;
@@ -103,93 +107,92 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         if (moveRight) {
                             Log.d(TAG, "MoveRight");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-                            mIvCircle0.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            mIvCircle0.startAnimation(mScaleCircleAnim);
                         }
                         else {
                             Log.d(TAG, "MoveLeft");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
-                            mIvCircle0.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            mIvCircle0.startAnimation(mScaleCircleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-                            mIvCircle1.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            mIvCircle1.startAnimation(mScaleCircleAnim);
                         }
                         break;
 
                     case 1:
                         if (moveRight) {
                             Log.d(TAG, "moveRight");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-                            mIvCircle0.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            mIvCircle0.startAnimation(mScaleCircleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
-                            mIvCircle1.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            mIvCircle1.startAnimation(mScaleCircleAnim);
                         }
                         else {
                             Log.d(TAG, "moveLeft");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
-                            mIvCircle1.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            mIvCircle1.startAnimation(mScaleCircleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-                            mIvCircle2.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            mIvCircle2.startAnimation(mScaleCircleAnim);
                         }
                         break;
 
                     case 2:
                         if (moveRight) {
                             Log.d(TAG, "moveRight");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-                            mIvCircle1.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            mIvCircle1.startAnimation(mScaleCircleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
-                            mIvCircle2.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            mIvCircle2.startAnimation(mScaleCircleAnim);
                         }
                         else {
                             Log.d(TAG, "moveLeft");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
-                            mIvCircle2.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            mIvCircle2.startAnimation(mScaleCircleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-                            mIvCircle3.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            mIvCircle3.startAnimation(mScaleCircleAnim);
                         }
                         break;
 
                     case 3:
                         if (moveRight) {
                             Log.d(TAG, "moveRight");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-                            mIvCircle2.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            mIvCircle2.startAnimation(mScaleCircleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
-                            mIvCircle3.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            mIvCircle3.startAnimation(mScaleCircleAnim);
                         }
                         else {
                             Log.d(TAG, "moveLeft");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
-                            mIvCircle3.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            mIvCircle3.startAnimation(mScaleCircleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-                            mIvCircle4.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            mIvCircle4.startAnimation(mScaleCircleAnim);
 
                             /* Make the button slowly disappear */
-                            final Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_disappear);
-                            mBtnExploreCities.startAnimation(animation);
+                            mDisappearBtnAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_disappear);
+                            mBtnExploreCities.startAnimation(mDisappearBtnAnim);
                         }
                         break;
 
                     case 4:
                         if (moveRight) {
                             Log.d(TAG, "moveRight");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
-                            mIvCircle3.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            mIvCircle3.startAnimation(mScaleCircleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
-                            mIvCircle4.startAnimation(scaleAnim);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            mIvCircle4.startAnimation(mScaleCircleAnim);
 
-                            mBtnExploreCities.setVisibility(View.VISIBLE);
-
-                            final Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_appear);
-                            mBtnExploreCities.startAnimation(animation);
+                            /* Make the button slowly appear */
+                            mDisappearBtnAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_appear);
+                            mBtnExploreCities.startAnimation(mDisappearBtnAnim);
                         }
                         else {
                             Log.d(TAG, "moveLeft");
@@ -208,16 +211,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public class ScreenSlidePageAdapter extends FragmentPagerAdapter {
-        private final String TAG = ScreenSlidePageAdapter.class.getSimpleName();
+    /* Loads each fragment based on the position */
+    public static class ScreenSlidePageAdapter extends FragmentPagerAdapter {
+        private List<Fragment> mFragmentList = Collections.emptyList();
 
         public ScreenSlidePageAdapter(FragmentManager fm) {
             super(fm);
+
+            /* Create an arrayList of fragments that will be used for the viewpager to navigate through */
+            mFragmentList = new ArrayList<>();
+            mFragmentList.add(new LoginFragment());
+            mFragmentList.add(new CitiesFragment());
+            mFragmentList.add(new MapsFragment());
+            mFragmentList.add(new FavouriteFragment());
+            mFragmentList.add(new OfflineFragment());
         }
 
         @Override
         public Fragment getItem(int position) {
-            Log.d(TAG, "getItem: " + position);
+            /* Return the fragment from the arrayList based on the position */
             return mFragmentList.get(position);
         }
 
