@@ -4,16 +4,18 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <!-- white with transparent -->
     <color name="line">#88ffffff</color>
+    <!-- white with transparent -->
     <color name="textLanding">#99ffffff</color>
 
     <!-- 500 Blue -->
     <color name="button">#992196f3</color>
 
-    <!-- circle inactive color -->
+    <!-- white with transparent circle inactive color -->
     <color name="circleDisabled">#88ffffff</color>
 
-    <!-- circle active color -->
+    <!-- white with transparent circle active color -->
     <color name="circleEnabled">#ffffff</color>
 
 </resources>

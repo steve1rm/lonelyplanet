@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              tools:context="me.androidbox.travelmate.CitiesFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="me.androidbox.travelmate.CitiesFragment">
 
-    <android.support.v4.view.ViewPager
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/btnExploreCities"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="110dp"
         android:layout_centerInParent="true"
-        android:text="Explore cities"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
+        android:layout_marginBottom="110dp"
         android:background="@drawable/button"
-        android:fontFamily="sans-serif-medium"/>
+        android:fontFamily="sans-serif-medium"
+        android:text="Explore cities"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
     <include
         android:id="@+id/loginInclude"
         layout="@layout/login"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 
     <include
         layout="@layout/circle_progress"
-        android:layout_height="40dp"
         android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_above="@id/loginInclude"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
-        android:layout_above="@id/loginInclude"/>
+        android:layout_marginBottom="24dp" />
 
 </RelativeLayout>
 
