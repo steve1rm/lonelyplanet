@@ -2,6 +2,7 @@ package me.androidbox.travelmate;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
@@ -18,8 +19,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = MainActivity.class.getSimpleName();
+import me.androidbox.travelmate.view.MainActivity;
+
+public class SlideScreenActivity extends AppCompatActivity {
+    private static final String TAG = SlideScreenActivity.class.getSimpleName();
 
     private static final int NUM_PAGES = 5;
     private List<Fragment> mFragmentList = Collections.emptyList();
@@ -65,19 +68,26 @@ public class MainActivity extends AppCompatActivity {
         PagerAdapter pagerAdapter = new ScreenSlidePageAdapter(getFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
-        Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+        Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
         mIvCircle0.startAnimation(scaleAnim);
-        scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+        scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
         mIvCircle1.startAnimation(scaleAnim);
-        scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+        scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
         mIvCircle2.startAnimation(scaleAnim);
-        scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+        scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
         mIvCircle3.startAnimation(scaleAnim);
-        scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+        scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
         mIvCircle4.startAnimation(scaleAnim);
 
         mBtnExploreCities = (Button)findViewById(R.id.btnExploreCities);
         mBtnExploreCities.setVisibility(View.INVISIBLE);
+
+        mBtnExploreCities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SlideScreenActivity.this, MainActivity.class));
+            }
+        });
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -98,15 +108,15 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         if (moveRight) {
                             Log.d(TAG, "MoveRight");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
                             mIvCircle0.startAnimation(scaleAnim);
                         }
                         else {
                             Log.d(TAG, "MoveLeft");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
                             mIvCircle0.startAnimation(scaleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
                             mIvCircle1.startAnimation(scaleAnim);
                         }
                         break;
@@ -114,20 +124,20 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         if (moveRight) {
                             Log.d(TAG, "moveRight");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
                             mIvCircle0.startAnimation(scaleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
                             mIvCircle1.startAnimation(scaleAnim);
                         }
                         else {
                             Log.d(TAG, "moveLeft");
 
                             Log.d(TAG, "onPerformAnimation moveLeft");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
                             mIvCircle1.startAnimation(scaleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
                             mIvCircle2.startAnimation(scaleAnim);
                         }
                         break;
@@ -135,20 +145,20 @@ public class MainActivity extends AppCompatActivity {
                     case 2:
                         if (moveRight) {
                             Log.d(TAG, "moveRight");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
                             mIvCircle1.startAnimation(scaleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
                             mIvCircle2.startAnimation(scaleAnim);
                         }
                         else {
                             Log.d(TAG, "moveLeft");
 
                             Log.d(TAG, "onPerformAnimation moveLeft");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
                             mIvCircle2.startAnimation(scaleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
                             mIvCircle3.startAnimation(scaleAnim);
                         }
                         break;
@@ -156,23 +166,23 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         if (moveRight) {
                             Log.d(TAG, "moveRight");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
                             mIvCircle2.startAnimation(scaleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
                             mIvCircle3.startAnimation(scaleAnim);
                         }
                         else {
                             Log.d(TAG, "moveLeft");
 
                             Log.d(TAG, "onPerformAnimation moveLeft");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
                             mIvCircle3.startAnimation(scaleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
                             mIvCircle4.startAnimation(scaleAnim);
 
-                            final Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_disappear);
+                            final Animation animation = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.button_disappear);
                             mBtnExploreCities.startAnimation(animation);
                         }
                         break;
@@ -180,15 +190,15 @@ public class MainActivity extends AppCompatActivity {
                     case 4:
                         if (moveRight) {
                             Log.d(TAG, "moveRight");
-                            Animation scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaledown_circle);
+                            Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaledown_circle);
                             mIvCircle3.startAnimation(scaleAnim);
 
-                            scaleAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scaleup_circle);
+                            scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
                             mIvCircle4.startAnimation(scaleAnim);
 
                             mBtnExploreCities.setVisibility(View.VISIBLE);
 
-                            final Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.button_appear);
+                            final Animation animation = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.button_appear);
                             mBtnExploreCities.startAnimation(animation);
                         }
                         else {
