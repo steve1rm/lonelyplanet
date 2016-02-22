@@ -25,7 +25,6 @@ public class SlideScreenActivity extends AppCompatActivity {
     private static final String TAG = SlideScreenActivity.class.getSimpleName();
 
     private static final int NUM_PAGES = 5;
-    private List<Fragment> mFragmentList = Collections.emptyList();
 
     private ImageView mIvCircle0;
     private ImageView mIvCircle1;
@@ -34,6 +33,11 @@ public class SlideScreenActivity extends AppCompatActivity {
     private ImageView mIvCircle4;
     private Button mBtnExploreCities;
 
+    /* Animation object */
+    private Animation mDisappearBtnAnim;
+    private Animation mScaleCircleAnim;
+    
+    /* Keeps track of the page position when swiping right and left */
     private int mPreviousPosition;
 
     @Override
@@ -43,14 +47,7 @@ public class SlideScreenActivity extends AppCompatActivity {
 
         setContentView(R.layout.screen_slide);
 
-        /* Create an arrayList of fragments that will be used for the viewpager to navigate through */
-        mFragmentList = new ArrayList<>();
-        mFragmentList.add(new LoginFragment());
-        mFragmentList.add(new CitiesFragment());
-        mFragmentList.add(new FavouriteFragment());
-        mFragmentList.add(new MapsFragment());
-        mFragmentList.add(new OfflineFragment());
-
+        /* Inflate the view into java objects */
         mIvCircle0 = (ImageView)findViewById(R.id.circle0);
         mIvCircle1 = (ImageView)findViewById(R.id.circle1);
         mIvCircle2 = (ImageView)findViewById(R.id.circle2);
@@ -64,8 +61,11 @@ public class SlideScreenActivity extends AppCompatActivity {
         mIvCircle3.clearAnimation();
         mIvCircle4.clearAnimation();
 
+        /* Get the viewpager where are fragment will be displayed */
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        /* Create a new ScreenSlidePageAdapter */
         PagerAdapter pagerAdapter = new ScreenSlidePageAdapter(getFragmentManager());
+        /* Set the adapter to the viewpager */
         viewPager.setAdapter(pagerAdapter);
 
         Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
@@ -80,7 +80,8 @@ public class SlideScreenActivity extends AppCompatActivity {
         mIvCircle4.startAnimation(scaleAnim);
 
         mBtnExploreCities = (Button)findViewById(R.id.btnExploreCities);
-        mBtnExploreCities.setVisibility(View.INVISIBLE);
+        mDisappearBtnAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.button_disappear);
+        mBtnExploreCities.startAnimation(mDisappearBtnAnim);
 
         mBtnExploreCities.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,16 +90,22 @@ public class SlideScreenActivity extends AppCompatActivity {
             }
         });
 
+        /* Listen for the swiping events */
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 /* Ignore */
             }
 
+            /*
+               We need to establish if we are moving to the right or the left so we can scale down and up on the
+               correct circles. We do this by keeping track of the position to see if it greater or less then the
+               previous position
+             */
             @Override
             public void onPageSelected(int position) {
                 boolean moveRight = false;
-                /* if the position is greater than mPreviousPosition we are moving right */
+                /* if the position is greater than mPreviousPosition we are moving right else we are moving left */
                 if (position > mPreviousPosition) {
                     moveRight = true;
                 }
@@ -132,6 +139,8 @@ public class SlideScreenActivity extends AppCompatActivity {
                         }
                         else {
                             Log.d(TAG, "moveLeft");
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
+                            mIvCircle1.startAnimation(mScaleCircleAnim);
 
                             Log.d(TAG, "onPerformAnimation moveLeft");
                             Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
@@ -153,6 +162,8 @@ public class SlideScreenActivity extends AppCompatActivity {
                         }
                         else {
                             Log.d(TAG, "moveLeft");
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
+                            mIvCircle2.startAnimation(mScaleCircleAnim);
 
                             Log.d(TAG, "onPerformAnimation moveLeft");
                             Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
@@ -174,6 +185,8 @@ public class SlideScreenActivity extends AppCompatActivity {
                         }
                         else {
                             Log.d(TAG, "moveLeft");
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
+                            mIvCircle3.startAnimation(mScaleCircleAnim);
 
                             Log.d(TAG, "onPerformAnimation moveLeft");
                             Animation scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
@@ -196,7 +209,8 @@ public class SlideScreenActivity extends AppCompatActivity {
                             scaleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
                             mIvCircle4.startAnimation(scaleAnim);
 
-                            mBtnExploreCities.setVisibility(View.VISIBLE);
+                            mScaleCircleAnim = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.scaleup_circle);
+                            mIvCircle4.startAnimation(mScaleCircleAnim);
 
                             final Animation animation = AnimationUtils.loadAnimation(SlideScreenActivity.this, R.anim.button_appear);
                             mBtnExploreCities.startAnimation(animation);
@@ -218,21 +232,31 @@ public class SlideScreenActivity extends AppCompatActivity {
         });
     }
 
-    public class ScreenSlidePageAdapter extends FragmentPagerAdapter {
-        private final String TAG = ScreenSlidePageAdapter.class.getSimpleName();
+    /* Loads each fragment based on the position */
+    public static class ScreenSlidePageAdapter extends FragmentPagerAdapter {
+        private List<Fragment> mFragmentList = Collections.emptyList();
 
         public ScreenSlidePageAdapter(FragmentManager fm) {
             super(fm);
+
+            /* Create an arrayList of fragments that will be used for the viewpager to navigate through */
+            mFragmentList = new ArrayList<>();
+            mFragmentList.add(new LoginFragment());
+            mFragmentList.add(new CitiesFragment());
+            mFragmentList.add(new MapsFragment());
+            mFragmentList.add(new FavouriteFragment());
+            mFragmentList.add(new OfflineFragment());
         }
 
         @Override
         public Fragment getItem(int position) {
-            Log.d(TAG, "getItem: " + position);
+            /* Return the fragment from the arrayList based on the position */
             return mFragmentList.get(position);
         }
 
         @Override
         public int getCount() {
+            /* We need to return the number of pages - or nothing will show */
             return NUM_PAGES;
         }
     }
