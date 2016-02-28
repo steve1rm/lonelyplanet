@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -23,29 +22,25 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tvTitle"/>
 
-    <ImageView
+    <include
         android:id="@+id/ivBangkok"
         android:layout_width="160dp"
         android:layout_height="220dp"
         android:layout_toLeftOf="@id/placeHolder"
         android:layout_toStartOf="@id/placeHolder"
         android:layout_below="@id/placeHolder"
-        android:src="@drawable/bangkok_image_160"
-        android:scaleType="centerCrop"
-        android:elevation="4dp" />
+        layout="@layout/bangkok"/>
 
-    <ImageView
+    <include
         android:id="@+id/ivBosten"
         android:layout_width="160dp"
         android:layout_height="220dp"
         android:layout_toRightOf="@id/placeHolder"
         android:layout_toEndOf="@id/placeHolder"
         android:layout_below="@id/placeHolder"
-        android:src="@drawable/boston_image_160"
-        android:scaleType="centerCrop"
-        android:elevation="4dp"/>
+        layout="@layout/bosten"/>
 
-    <ImageView
+    <include
         android:id="@+id/ivDubai"
         android:layout_width="160dp"
         android:layout_height="220dp"
@@ -53,11 +48,9 @@
         android:layout_toLeftOf="@id/placeHolder"
         android:layout_toStartOf="@id/placeHolder"
         android:layout_below="@id/ivBangkok"
-        android:src="@drawable/dubai_image_160"
-        android:scaleType="centerCrop"
-        android:elevation="4dp"/>
+        layout="@layout/dubai"/>
 
-    <ImageView
+    <include
         android:id="@+id/ivTokyo"
         android:layout_width="160dp"
         android:layout_height="220dp"
@@ -65,9 +58,7 @@
         android:layout_toRightOf="@id/placeHolder"
         android:layout_toEndOf="@id/placeHolder"
         android:layout_below="@id/ivBosten"
-        android:src="@drawable/tokyo_image_160"
-        android:scaleType="centerCrop"
-        android:elevation="4dp"/>
+        layout="@layout/tokyo"/>
 
     <View
         android:layout_width="match_parent"
