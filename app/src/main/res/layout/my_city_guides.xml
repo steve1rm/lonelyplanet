@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="My City Guides"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:fontFamily="sans-serif-light"/>
+
+    <Space
+        android:id="@+id/placeHolder"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_margin="6dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvTitle"/>
+
+    <ImageView
+        android:id="@+id/ivBangkok"
+        android:layout_width="160dp"
+        android:layout_height="220dp"
+        android:layout_toLeftOf="@id/placeHolder"
+        android:layout_toStartOf="@id/placeHolder"
+        android:layout_below="@id/placeHolder"
+        android:src="@drawable/bangkok_image_160"
+        android:scaleType="centerCrop"
+        android:elevation="4dp" />
+
+    <ImageView
+        android:id="@+id/ivBosten"
+        android:layout_width="160dp"
+        android:layout_height="220dp"
+        android:layout_toRightOf="@id/placeHolder"
+        android:layout_toEndOf="@id/placeHolder"
+        android:layout_below="@id/placeHolder"
+        android:src="@drawable/boston_image_160"
+        android:scaleType="centerCrop"
+        android:elevation="4dp"/>
+
+    <ImageView
+        android:id="@+id/ivDubai"
+        android:layout_width="160dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/placeHolder"
+        android:layout_toStartOf="@id/placeHolder"
+        android:layout_below="@id/ivBangkok"
+        android:src="@drawable/dubai_image_160"
+        android:scaleType="centerCrop"
+        android:elevation="4dp"/>
+
+    <ImageView
+        android:id="@+id/ivTokyo"
+        android:layout_width="160dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/placeHolder"
+        android:layout_toEndOf="@id/placeHolder"
+        android:layout_below="@id/ivBosten"
+        android:src="@drawable/tokyo_image_160"
+        android:scaleType="centerCrop"
+        android:elevation="4dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_below="@id/ivTokyo"
+        android:background="@android:color/darker_gray" />
+</RelativeLayout>
