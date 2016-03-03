@@ -15,13 +15,11 @@
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <include
-                layout="@layout/toolbar"
+            <FrameLayout
+                android:id="@+id/scene_root"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways" />
+                android:layout_height="wrap_content"/>
         </android.support.design.widget.CollapsingToolbarLayout>
-
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -38,6 +36,4 @@
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
-
 </android.support.design.widget.CoordinatorLayout>

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Scene;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,9 @@ import me.androidbox.travelmate.R;
  * A simple {@link Fragment} subclass.
  */
 public class MainFragment extends Fragment {
+    private Scene mToolbar_expanded;
+    private Scene mToolbar_collapsed;
+
     public MainFragment() {
         // Required empty public constructor
     }
@@ -26,6 +31,12 @@ public class MainFragment extends Fragment {
         final Toolbar toolbar = (Toolbar)view.findViewById(R.id.toolbar);
         final AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
         appCompatActivity.setSupportActionBar(toolbar);
+
+
+        mToolbar_expanded = Scene.getSceneForLayout((ViewGroup)view.findViewById(R.id.scene_root), R.layout.toolbar_scene_expanded, getActivity());
+        mToolbar_collapsed = Scene.getSceneForLayout((ViewGroup)view.findViewById(R.id.scene_root), R.layout.toolbar_scene_collapsed, getActivity());
+
+        mToolbar_expanded.enter();
 
         return view;
     }

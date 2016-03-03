@@ -60,6 +60,27 @@
         android:layout_below="@id/ivBosten"
         layout="@layout/tokyo"/>
 
+
+    <include
+        android:id="@+id/ivBangkok2"
+        android:layout_width="160dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/placeHolder"
+        android:layout_toStartOf="@id/placeHolder"
+        android:layout_below="@id/ivDubai"
+        layout="@layout/bangkok"/>
+
+    <include
+        android:id="@+id/ivBosten2"
+        android:layout_width="160dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/placeHolder"
+        android:layout_toEndOf="@id/placeHolder"
+        android:layout_below="@id/ivTokyo"
+        layout="@layout/bosten"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
@@ -69,6 +90,6 @@
         android:layout_marginLeft="14dp"
         android:layout_marginEnd="14dp"
         android:layout_marginRight="14dp"
-        android:layout_below="@id/ivTokyo"
+        android:layout_below="@id/ivBangkok2"
         android:background="@android:color/darker_gray" />
 </RelativeLayout>
