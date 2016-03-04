@@ -26,17 +26,17 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.cheesequare, container, false);
 
         final Toolbar toolbar = (Toolbar)view.findViewById(R.id.toolbar);
         final AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
         appCompatActivity.setSupportActionBar(toolbar);
 
-
+/*
         mToolbar_expanded = Scene.getSceneForLayout((ViewGroup)view.findViewById(R.id.scene_root), R.layout.toolbar_scene_expanded, getActivity());
         mToolbar_collapsed = Scene.getSceneForLayout((ViewGroup)view.findViewById(R.id.scene_root), R.layout.toolbar_scene_collapsed, getActivity());
-
         mToolbar_expanded.enter();
+*/
 
         return view;
     }
