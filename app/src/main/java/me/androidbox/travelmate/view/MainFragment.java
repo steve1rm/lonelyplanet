@@ -54,15 +54,25 @@ public class MainFragment extends Fragment {
                 ivLogo.startAnimation(animation);
 
                 android.support.v7.widget.Toolbar toolbarLayout = (android.support.v7.widget.Toolbar)view.findViewById(R.id.toolbar);
-                android.support.v7.widget.Toolbar.LayoutParams layoutParams = (android.support.v7.widget.Toolbar.LayoutParams)ivSearch.getLayoutParams();
 
                 int top = toolbarLayout.getTop();
                 int left = toolbarLayout.getLeft();
                 int bottom = toolbarLayout.getBottom();
                 int right = toolbarLayout.getRight();
 
-                final TranslateAnimation translateAnimation = new TranslateAnimation(left, right, top, bottom);
+                int[] coordinates = new int[2];
+                ivSearch.getLocationInWindow(coordinates);
+                int fromX = coordinates[0];
+                int fromY = coordinates[1];
+
+                final TranslateAnimation translateAnimation = new TranslateAnimation(left, fromX, top, fromY);
+
+                /* final TranslateAnimation translateAnimation = new TranslateAnimation(fromX, left, fromY, top); */
+
+                // final TranslateAnimation translateAnimation = new TranslateAnimation(fromX, toX, fromY, toY);
+
                 translateAnimation.setDuration(1000);
+                ivSearch.clearAnimation();
                 ivSearch.startAnimation(translateAnimation);
             }
         });
