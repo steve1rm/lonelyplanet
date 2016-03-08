@@ -1,5 +1,7 @@
 package me.androidbox.travelmate.view;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
@@ -44,6 +46,7 @@ public class MainFragment extends Fragment {
 
         final ImageView ivLogo = (ImageView)view.findViewById(R.id.ivLogo);
         final ImageView ivSearch = (ImageView)view.findViewById(R.id.ivSearch);
+        final ImageView ivSettings = (ImageView)view.findViewById(R.id.ivSettings);
         final NestedScrollView nsvCities = (NestedScrollView)view.findViewById(R.id.nsvCities);
         final TextView tvTitle = (TextView)view.findViewById(R.id.tvTitle);
 
@@ -53,27 +56,17 @@ public class MainFragment extends Fragment {
                 final Animation animation= AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_logo);
                 ivLogo.startAnimation(animation);
 
-                android.support.v7.widget.Toolbar toolbarLayout = (android.support.v7.widget.Toolbar)view.findViewById(R.id.toolbar);
+                ivSearch.animate()
+                        .x(20)
+                        .y(20)
+                        .setDuration(250)
+                        .start();
 
-                int top = toolbarLayout.getTop();
-                int left = toolbarLayout.getLeft();
-                int bottom = toolbarLayout.getBottom();
-                int right = toolbarLayout.getRight();
-
-                int[] coordinates = new int[2];
-                ivSearch.getLocationInWindow(coordinates);
-                int fromX = coordinates[0];
-                int fromY = coordinates[1];
-
-                final TranslateAnimation translateAnimation = new TranslateAnimation(left, fromX, top, fromY);
-
-                /* final TranslateAnimation translateAnimation = new TranslateAnimation(fromX, left, fromY, top); */
-
-                // final TranslateAnimation translateAnimation = new TranslateAnimation(fromX, toX, fromY, toY);
-
-                translateAnimation.setDuration(1000);
-                ivSearch.clearAnimation();
-                ivSearch.startAnimation(translateAnimation);
+                ivSettings.animate()
+                        .x(380)
+                        .y(20)
+                        .setDuration(250)
+                        .start();
             }
         });
 
