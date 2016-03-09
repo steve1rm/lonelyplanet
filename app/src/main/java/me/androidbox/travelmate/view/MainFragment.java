@@ -1,20 +1,19 @@
 package me.androidbox.travelmate.view;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.Fragment;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.transition.Scene;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,9 +24,6 @@ import me.androidbox.travelmate.R;
  */
 public class MainFragment extends Fragment {
     private static final String TAG = MainFragment.class.getSimpleName();
-
-    private Scene mToolbar_expanded;
-    private Scene mToolbar_collapsed;
 
     public MainFragment() {
         // Required empty public constructor
@@ -50,6 +46,15 @@ public class MainFragment extends Fragment {
         final NestedScrollView nsvCities = (NestedScrollView)view.findViewById(R.id.nsvCities);
         final TextView tvTitle = (TextView)view.findViewById(R.id.tvTitle);
 
+        final DisplayMetrics displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        final float width = displayMetrics.xdpi;
+        final float height = displayMetrics.ydpi;
+        final float widthPx = displayMetrics.widthPixels;
+        final Point size = new Point();
+        getActivity().getWindowManager().getDefaultDisplay().getSize(size);
+        Log.d(TAG, "width: " + width + " height: " + height + " widthPx: " + widthPx + " sizeX: " + size.x + " sizeY: " + size.y + " toolbar: " + toolbar.getWidth());
+
         tvTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,13 +62,15 @@ public class MainFragment extends Fragment {
                 ivLogo.startAnimation(animation);
 
                 ivSearch.animate()
+                        .setInterpolator(new AccelerateInterpolator())
                         .x(20)
                         .y(20)
                         .setDuration(250)
                         .start();
 
                 ivSettings.animate()
-                        .x(380)
+                        .setInterpolator(new AccelerateInterpolator())
+                        .x(widthPx - 160)
                         .y(20)
                         .setDuration(250)
                         .start();
@@ -76,12 +83,6 @@ public class MainFragment extends Fragment {
                 Log.d(TAG, "onScrollChange");
             }
         });
-
-/*
-        mToolbar_expanded = Scene.getSceneForLayout((ViewGroup)view.findViewById(R.id.scene_root), R.layout.toolbar_scene_expanded, getActivity());
-        mToolbar_collapsed = Scene.getSceneForLayout((ViewGroup)view.findViewById(R.id.scene_root), R.layout.toolbar_scene_collapsed, getActivity());
-        mToolbar_expanded.enter();
-*/
 
         return view;
     }
