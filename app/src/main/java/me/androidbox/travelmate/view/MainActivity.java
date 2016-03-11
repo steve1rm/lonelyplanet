@@ -2,11 +2,11 @@ package me.androidbox.travelmate.view;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.renderscript.Sampler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +15,7 @@ import java.util.Map;
 import me.androidbox.travelmate.R;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
-        isPalindrome("noel sees leon.");
+       // isPalindrome("noel sees leon.");
+
+
+        Log.d(TAG,  " " + countWords("The fox jumped over 10 fences"));
     }
 
     /* noelseesleon */
@@ -131,5 +135,87 @@ For example, areAnagrams("momdad", "dadmom") should return true as arguments are
         sortedInt.toArray(intsSorted);
 
         return null;
+    }
+
+    public int countWords(String s) {
+        /*
+          Please implement this method to
+          return the word count in a given String.
+          Assume that the parameter String can only contain spaces and alphanumeric characters.
+         "the fox jumped over 10 fences"
+         */
+
+        int wordCount = 1;
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == ' ') {
+                wordCount++;
+            }
+        }
+
+        return wordCount;
+    }
+
+    public List<Integer> getPerfectNumbers(int from, int to) {
+        /*
+          Please implement this method to
+          return a list of all perfect numbers in the given range inclusively.
+          A perfect number is defined as a positive integer which is the sum of its positive divisors not including the number itself.
+          For example: 6 is a perfect number because 6 = 1 + 2 + 3 (1, 2, 3 are divisors of 6)
+          28 is also a perfect number: 28 = 1 + 2 + 4 + 7 + 14
+
+         2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+         */
+
+        return new ArrayList<>();
+    }
+
+    public Object[] reverseArray(Object[] a) {
+        /*
+          Please implement this method to
+          return a new array where the order of elements has been reversed from the original
+          array.
+         */
+
+        Object[] rev = new Object[a.length];
+        int k = 0;
+        for(int i = a.length; i > -1; i--) {
+            rev[k++] = a[i];
+        }
+
+        return rev;
+    }
+
+    public static String capitalizeFirstLetters(String s) {
+        /*
+          Please implement this method to
+          capitalize all first letters of the words in the given String.
+          All other symbols shall remain intact. If a word starts not with a letter, it shall remain intact too.
+          Assume that the parameter String can only contain spaces and alphanumeric characters.
+
+          NOTE: please keep in mind that the words can be divided by single or multiple spaces.
+          The spaced also can be found at the beginning or the end of the parameter string,
+          and you need to preserve them.
+
+          " the fox jumped  over 10 fences "
+         */
+        char[] spaces = new char[s.length()];
+        char[] words = new char[s.length()];
+
+        List<String> sentence = new ArrayList<>();
+        int k = 0;
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) == ' ') {
+                spaces[k] = ' ';
+                k++;
+            }
+            else {
+                if(spaces.length > 0) {
+                    sentence.add(spaces.toString());
+                }
+                k = 0;
+
+            }
+        }
+
     }
 }
