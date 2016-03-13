@@ -5,29 +5,22 @@
     android:layout_height="match_parent"
     tools:context="me.androidbox.travelmate.view.MainFragment">
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.design.widget.CollapsingToolbarLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@android:color/white"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:contentScrim="?attr/colorPrimary"
+        app:expandedTitleMarginEnd="64dp"
+        app:expandedTitleMarginStart="48dp"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp">
+            android:layout_height="wrap_content" />
 
-            <include
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                layout="@layout/toolbar"/>
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
+    </android.support.design.widget.CollapsingToolbarLayout>
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nsvCities"

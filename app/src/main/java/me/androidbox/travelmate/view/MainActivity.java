@@ -30,9 +30,79 @@ public class MainActivity extends AppCompatActivity {
         }
 
        // isPalindrome("noel sees leon.");
+ //       Object[] a = new Object[] {3, 4, 2, -3, 6, -2, 9, 5};
+  //      reverseArray(a);
 
+       // Log.d(TAG,  " " + countWords("The fox jumped over 10 fences"));
+    }
 
-        Log.d(TAG,  " " + countWords("The fox jumped over 10 fences"));
+    public Object[] reverseArray(Object[] a) {
+        /*
+          Please implement this method to
+          return a new array where the order of elements has been reversed from the original
+          array.
+         */
+        Object[] rev = new Object[a.length];
+        int k = 0;
+        for(int i = a.length; i > -1; i--) {
+            rev[k++] = a[i];
+        }
+
+        Log.d(TAG, "finished");
+
+        return rev;
+    }
+
+    public int getClosestToZero(int[] a) {
+        /*
+          Please implement this method to
+          return the number in the array that is closest to zero.
+          If there are two equally close to zero elements like 2 and -2
+          - consider the positive element to be "closer" to zero.
+         */
+
+        /* 3, 4, 2, -3, 6, -2, 9, 5 */
+
+        int closestPositive = a[0];
+        int closeNegative = a[0];
+        int closestZero = 0;
+
+        /* Find the closest positive */
+        for(int i = 1; i < a.length; i++) {
+            if(a[i] > 0) {
+                if(a[i] < closestPositive) {
+                    closestPositive = a[i];
+                }
+            }
+        }
+
+        /* Put the first negative number in for comparsion */
+        for(int i = 0; i < a.length; i++) {
+            if(a[i] < 0) {
+                closeNegative = a[i];
+                break;
+            }
+        }
+
+        /* Find the closest negative */
+        for(int i = 0; i < a.length; i++) {
+            /* Check for the negative numbers */
+            if(a[i] < 0) {
+                if(closeNegative < a[i]) {
+                    closeNegative = a[i];
+                }
+            }
+        }
+
+        /* Compare the results */
+        int negativeABS = Math.abs(closeNegative);
+        if(closestPositive <= negativeABS) {
+            closestZero = negativeABS;
+        }
+
+        Log.d(TAG, "closeZero: " + closestZero);
+
+        return closestZero;
     }
 
     /* noelseesleon */
@@ -169,7 +239,7 @@ For example, areAnagrams("momdad", "dadmom") should return true as arguments are
         return new ArrayList<>();
     }
 
-    public Object[] reverseArray(Object[] a) {
+    public Object[] reverseArray2(Object[] a) {
         /*
           Please implement this method to
           return a new array where the order of elements has been reversed from the original
@@ -217,5 +287,6 @@ For example, areAnagrams("momdad", "dadmom") should return true as arguments are
             }
         }
 
+        return "";
     }
 }

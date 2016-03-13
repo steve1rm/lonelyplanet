@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,11 @@ public class MainFragment extends Fragment {
         getActivity().getWindowManager().getDefaultDisplay().getSize(size);
         Log.d(TAG, "width: " + width + " height: " + height + " widthPx: " + widthPx + " sizeX: " + size.x + " sizeY: " + size.y + " toolbar: " + toolbar.getWidth());
 
+        final float rawPX20DPValue = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics());
+
+        final float rawPX20PValue = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20 ,getResources().getDisplayMetrics());
+
+
         tvTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,15 +69,15 @@ public class MainFragment extends Fragment {
 
                 ivSearch.animate()
                         .setInterpolator(new AccelerateInterpolator())
-                        .x(20)
-                        .y(20)
+                        .translationX(-60)
+                        .translationY(-40)
                         .setDuration(250)
                         .start();
 
                 ivSettings.animate()
                         .setInterpolator(new AccelerateInterpolator())
-                        .x(widthPx - 160)
-                        .y(20)
+                        .translationX(60)
+                        .translationY(-40)
                         .setDuration(250)
                         .start();
             }
