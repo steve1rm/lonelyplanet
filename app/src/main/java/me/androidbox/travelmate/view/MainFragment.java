@@ -91,7 +91,7 @@ public class MainFragment extends Fragment {
 
         final LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)toolbar.getLayoutParams();
 
-    
+
 
         nsvCities.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
