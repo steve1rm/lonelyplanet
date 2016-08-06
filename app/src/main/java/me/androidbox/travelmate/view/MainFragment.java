@@ -68,20 +68,21 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "toolbar.getHeight(): " + toolbar.getHeight() + "toolbar.getMinimumHeight(): " + toolbar.getMinimumHeight());
 
+                /* Scale down the logo */
                 final Animation animation= AnimationUtils.loadAnimation(getActivity(), R.anim.scaledown_logo);
                 ivLogo.startAnimation(animation);
 
                 ivSearch.animate()
                         .setInterpolator(new AccelerateInterpolator())
                         .translationX(-60)
-                        .translationY(0)
+                        .translationY(-60)
                         .setDuration(250)
                         .start();
 
                 ivSettings.animate()
                         .setInterpolator(new AccelerateInterpolator())
                         .translationX(60)
-                        .translationY(0)
+                        .translationY(-60)
                         .setDuration(250)
                         .start();
             }
