@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context="me.androidbox.travelmate.FavouriteFragment">
 
+
     <ImageView
         android:id="@+id/ivImageSlide"
         android:layout_width="match_parent"
