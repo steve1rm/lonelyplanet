@@ -3,8 +3,6 @@ package me.androidbox.travelmate.view;
 import android.app.Fragment;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -93,7 +91,7 @@ public class MainFragment extends Fragment {
 
 
 
-        nsvCities.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+   /*     nsvCities.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 Log.d(TAG, "onScrollChange scrollX " + scrollX + " scrollY: " + scrollY);
@@ -104,7 +102,7 @@ public class MainFragment extends Fragment {
                     toolbar.requestLayout();
                 }
             }
-        });
+        });*/
 
         return view;
     }

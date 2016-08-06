@@ -9,7 +9,8 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     app:contentInsetStart="0dp"
     app:elevation="0dp"
-    app:layout_collapseMode="pin">
+    app:layout_collapseMode="pin"
+    android:fitsSystemWindows="true">
 
     <FrameLayout
         android:layout_width="match_parent"
